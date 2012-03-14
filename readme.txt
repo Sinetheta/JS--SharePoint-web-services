@@ -1,1 +1,1 @@
-hi
+Not much to say, just piling up some SP web service calls for now. Hopefully we can make something usefull of this.

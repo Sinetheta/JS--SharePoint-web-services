@@ -1,4 +1,4 @@
-var server = 'https://theloop.gov.bc.ca'
+var server = 'https://yourServer'
 var getUserLinks = function (accountName) {
         var soap = '';
         accountName = accountName || ''; //Blank accountName returns results for current user
