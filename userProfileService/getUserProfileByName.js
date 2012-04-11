@@ -9,9 +9,9 @@
         accountName = accountName || ''; //Blank accountName returns results for current user
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
-        soap += '       <GetUserLinks xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
+        soap += '       <GetUserProfileByName xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
         soap += '           <accountName>' + accountName + '</accountName>';
-        soap += '       </GetUserLinks>';
+        soap += '       </GetUserProfileByName>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
 
@@ -25,15 +25,23 @@
     }
     // Example use
     $.when($.SP.userProfileService.GetUserProfileByName()).done(function (data, textStatus, jqXHR) {
-       $(data).find('QuickLinkData').each(function (i, link) {
-            var $link = $(link);
-            console.log({
-                id: $link.find('ID').text(),
-                name: $link.find('Name').text(),
-                group: $link.find('Group').text(),
-                privacy: $link.find('Privacy').text(),
-                url: $link.find('Url').text(),
-            })
+        var user = {};
+        $(data).find('PropertyData').each(function (i, property) {
+            var $property = $(property);
+            var $values = $property.find('ValueData');
+            var values;
+            
+            if( $values.length > 1){
+                values = [];
+                $.each($values, function(j, data){
+                    values.push( $(data).find('Value').text() );
+                });
+            }else{
+                values = $property.find('Value').text()
+            }
+            
+            user[ $property.find('Name').text() ] = values;
         });
+        console.log(user);
     });
 })(jQuery);
