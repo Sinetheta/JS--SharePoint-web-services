@@ -1,6 +1,6 @@
 (function($){ 
     $.SP = {};
-    $.SP.server = 'https://theloop.gov.bc.ca';
+    $.SP.server = 'yourserver.com';
     $.SP.userProfileService = {};
     
     $.SP.userProfileService.GetUserProfileByName = function (accountName) {
