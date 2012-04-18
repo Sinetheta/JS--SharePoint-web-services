@@ -3,7 +3,7 @@
     $.SP.server = 'https://yourserver';
     $.SP.userProfileService= {};
     
-    $.SP.userProfileService.GetCommonColleagues = function (accountName) {
+    $.SP.userProfileService.getCommonColleagues = function (accountName) {
         var soap = '';
                 
         accountName = accountName || '';//no accountName returns in common with self
@@ -25,7 +25,7 @@
     }
 
     // Example use
-    $.when( $.SP.userProfileService.GetCommonColleagues() ).done(function(data, textStatus, jqXHR){
+    $.when( $.SP.userProfileService.getCommonColleagues() ).done(function(data, textStatus, jqXHR){
     	var colleagues = [];
     	$(data).find('ContactData').each(function(i, contact){
     		var $contact = $(contact);

@@ -3,7 +3,7 @@
     $.SP.server = 'https://yourserver';
     $.SP.userProfileService= {};
     
-    $.SP.userProfileService.GetCommonManager = function (accountName) {
+    $.SP.userProfileService.getCommonManager = function (accountName) {
         var soap = '';
                 
         accountName = accountName || '';//no accountName returns in common with self
@@ -25,7 +25,7 @@
     }
 
     // Example use
-    $.when( $.SP.userProfileService.GetCommonManager() ).done(function(data, textStatus, jqXHR){
+    $.when( $.SP.userProfileService.getCommonManager() ).done(function(data, textStatus, jqXHR){
 		var $manager = $(data).find('GetCommonManagerResult');
 		var manager = {	
 			AccountName: $manager.find('AccountName').text(),

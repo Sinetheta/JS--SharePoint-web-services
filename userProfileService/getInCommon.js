@@ -3,7 +3,7 @@
     $.SP.server = 'https://yourserver';
     $.SP.userProfileService= {};
     
-    $.SP.userProfileService.GetInCommon = function (accountName) {
+    $.SP.userProfileService.getInCommon = function (accountName) {
         var soap = '';
                 
         accountName = accountName || '';//no accountName returns in common with self
@@ -25,7 +25,7 @@
     }
 
     // Example use
-    $.when( $.SP.userProfileService.GetInCommon() ).done(function(data, textStatus, jqXHR){
+    $.when( $.SP.userProfileService.getInCommon() ).done(function(data, textStatus, jqXHR){
     	var common = {
     		manager: null,
     		contacts: [],
