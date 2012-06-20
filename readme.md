@@ -20,6 +20,6 @@ Tips for using the Web Services
 
 Some useful gloabls exposed by SharePoint:
 
-* `L_Menu_BaseUrl' - [from Web BorG](http://webborg.blogspot.ca/2008/07/couple-of-useful-javascript-global.html) the base URL of the site / subsite. A quicker way to get the local absolute path and parsing it from the `location` properties for services like GetListItems
+* `L_Menu_BaseUrl` - [from Web BorG](http://webborg.blogspot.ca/2008/07/couple-of-useful-javascript-global.html) the base URL of the site / subsite. A quicker way to get the local absolute path and parsing it from the `location` properties for services like GetListItems
 
 * `_spUserId` - the ID of the logged in user.
