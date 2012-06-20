@@ -10,6 +10,7 @@ Some of SharePoint's SOAP requests require a "SOAPAction header", you can read m
 > The SOAPAction HTTP request header field can be used to indicate the intent of the SOAP HTTP request. The value is a URI identifying the intent. SOAP places no restrictions on the format or specificity of the URI or that it is resolvable. An HTTP client MUST use this header field when issuing a SOAP HTTP Request.
 
 This can be added to a jQuery ajax call by adding setting a request header before it is sent.
+
     beforeSend: function (xhr) {
         xhr.setRequestHeader("SOAPAction", "http://schemas.microsoft.com/sharepoint/soap/GetList");
     }
