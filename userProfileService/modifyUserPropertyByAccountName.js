@@ -1,22 +1,21 @@
-(function($){ 
-    $.SP = {};
-    $.SP.server = 'yourserver.com';
-    $.SP.userProfileService = {};
-    
-    $.SP.userProfileService.modifyUserPropertyByAccountName = function (PropertyData, accountName) {
+(function ($) {
+    $.SP = $.SP || {};
+    $.SP.server = 'https://yourserver.com';
+    $.SP.UserProfileService = $.SP.UserProfileService || {};
+
+    $.SP.UserProfileService.ModifyUserPropertyByAccountName = function (PropertyData, accountName) {
         var soap = '';
-        
-        accountName = accountName || ''; //Blank accountName modifies current user
+
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
         soap += '       <ModifyUserPropertyByAccountName xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
-        soap += '           <accountName>' + accountName + '</accountName>';
+        soap += '           <accountName>' + (accountName || '') + '</accountName>';
         soap += '           <newData>';
-        if( !$.isArray(PropertyData) ){
-                PropertyData = [PropertyData];
-            }
-        $.each(PropertyData,function(i, prop){
-            if( !$.isArray(prop.ValueData) ){
+        if (!$.isArray(PropertyData)) {
+            PropertyData = [PropertyData];
+        }
+        $.each(PropertyData, function (i, prop) {
+            if (!$.isArray(prop.ValueData)) {
                 prop.ValueData = [prop.ValueData];
             }
             soap += '           <PropertyData>';
@@ -25,20 +24,20 @@
             soap += '           <Name>' + prop.Name + '</Name>';
             soap += '           <Privacy>' + (prop.Privacy || 'NotSet') + '</Privacy>';
             soap += '           <Values>';
-        
-            $.each(prop.ValueData,function(j, val){
-                    soap += '       <ValueData><Value xsi:type="xsd:string">' + val +'</Value></ValueData>';        
+
+            $.each(prop.ValueData, function (j, val) {
+                soap += '       <ValueData><Value xsi:type="xsd:string">' + val + '</Value></ValueData>';
             });
-        
+
             soap += '           </Values>';
             soap += '           </PropertyData>';
         });
-        
+
         soap += '           </newData>';
         soap += '       </ModifyUserPropertyByAccountName>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
-        console.log(soap )
+        console.log(soap)
 
 
         return $.ajax({
@@ -52,8 +51,10 @@
             }
         });
     }
-    
+
     // Example use, nothing cool comes back
-    $.SP.userProfileService.modifyUserPropertyByAccountName({Name:'SPS-StatusNotes',ValueData:'newester status'});
-    
+    $.SP.userProfileService.modifyUserPropertyByAccountName({
+        Name: 'SPS-StatusNotes',
+        ValueData: 'newester status'
+    });
 })(jQuery);

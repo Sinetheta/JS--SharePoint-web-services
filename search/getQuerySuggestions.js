@@ -1,9 +1,9 @@
-String.prototype.escapeHTML = function () {
-    return this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-};
+(function ($) {
+    $.SP = $.SP || {};
+    $.SP.server = 'https://yourserver.com';
+    $.SP.Search = $.SP.Search || {};
 
-var server = 'https://yourServer'
-var GetQuerySuggestions = function (querytext, scope) {
+    $.SP.Search.GetQuerySuggestions = function (querytext, scope) {
         var soap = '',
             queryXML = '';
         scope = scope ? "SCOPE:\"" + scope + "\"" : "";
@@ -45,3 +45,8 @@ var GetQuerySuggestions = function (querytext, scope) {
             console.log($(result).text());
         });
     });
+})(jQuery);
+
+String.prototype.escapeHTML = function () {
+    return this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+};

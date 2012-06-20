@@ -1,9 +1,9 @@
-(function($){ 
-    $.SP = {};
-    $.SP.server = 'https://your-server';
-    $.SP.socialDataService = {};
-    
-    $.SP.socialDataService.addComment = function (url, comment, title, isHighPriority) {
+(function ($) {
+    $.SP = $.SP || {};
+    $.SP.server = 'https://yourserver.com';
+    $.SP.SocialDataService = $.SP.SocialDataService || {};
+
+    $.SP.SocialDataService.AddComment = function (url, comment, title, isHighPriority) {
         var soap = '';
 
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
@@ -16,7 +16,7 @@
         soap += '       </AddComment>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
-        
+
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
@@ -30,8 +30,9 @@
     }
 
     // Example use
-    $.when($.SP.socialDataService.addComment('https://twitter.com/','I love tweets!','Twitter')).done(function (data, textStatus, jqXHR) {
+    $.when($.SP.socialDataService.addComment('https://twitter.com/', 'I love tweets!', 'Twitter')).done(function (data, textStatus, jqXHR) {
         var $comment = $(data).find('AddCommentResponse')
+        
         console.log({
             Url: $comment.find('Url').text(),
             Owner: $comment.find('Owner').text(),

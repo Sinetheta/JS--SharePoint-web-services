@@ -1,11 +1,15 @@
-var server = 'https://yourServer'
-var getUserLinks = function (accountName) {
+(function ($) {
+    $.SP = $.SP || {};
+    $.SP.server = 'https://yourserver.com';
+    $.SP.UserProfileService = $.SP.UserProfileService || {};
+
+    $.SP.UserProfileService.GetUserLinks = function (accountName) {
         var soap = '';
-        accountName = accountName || ''; //Blank accountName returns results for current user
+
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
         soap += '       <GetUserLinks xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
-        soap += '           <accountName>' + accountName + '</accountName>';
+        soap += '           <accountName>' + (accountName || '') + '</accountName>';
         soap += '       </GetUserLinks>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
@@ -22,6 +26,7 @@ var getUserLinks = function (accountName) {
     $.when(getUserLinks()).done(function (data, textStatus, jqXHR) {
         $(data).find('QuickLinkData').each(function (i, link) {
             var $link = $(link);
+
             console.log({
                 id: $link.find('ID').text(),
                 name: $link.find('Name').text(),
@@ -31,3 +36,4 @@ var getUserLinks = function (accountName) {
             })
         });
     });
+})(jQuery);

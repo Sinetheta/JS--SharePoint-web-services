@@ -1,16 +1,15 @@
-(function($){ 
-    $.SP = {};
-    $.SP.server = 'yourserver.com';
-    $.SP.userProfileService = {};
-    
-    $.SP.userProfileService.GetUserProfileByName = function (accountName) {
+(function ($) {
+    $.SP = $.SP || {};
+    $.SP.server = 'https://yourserver.com';
+    $.SP.UserProfileService = $.SP.UserProfileService || {};
+
+    $.SP.UserProfileService.GetUserProfileByName = function (accountName) {
         var soap = '';
-        
-        accountName = accountName || ''; //Blank accountName returns results for current user
+
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
         soap += '       <GetUserProfileByName xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
-        soap += '           <accountName>' + accountName + '</accountName>';
+        soap += '           <accountName>' + (accountName || '') + '</accountName>';
         soap += '       </GetUserProfileByName>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
@@ -30,17 +29,17 @@
             var $property = $(property);
             var $values = $property.find('ValueData');
             var values;
-            
-            if( $values.length > 1){
+
+            if ($values.length > 1) {
                 values = [];
-                $.each($values, function(j, data){
-                    values.push( $(data).find('Value').text() );
+                $.each($values, function (j, data) {
+                    values.push($(data).find('Value').text());
                 });
-            }else{
+            } else {
                 values = $property.find('Value').text()
             }
-            
-            user[ $property.find('Name').text() ] = values;
+
+            user[$property.find('Name').text()] = values;
         });
         console.log(user);
     });
