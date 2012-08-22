@@ -1,7 +1,7 @@
 jQuery SharePoint Web Services - Ajax calls for front-end work in SharePoint 2010
 ================================
 
-Not much to say, just piling up some SP web service calls for now. I'll add services and supporting info as time allows. Please feel free to contribute or contact me for updates.
+Not much to say, just piling up some SP web service calls for now. I'll add services and supporting info as time allows. Please feel free to contribute or contact me for updates. Nothing in here is sacred yet, API changes daily, that's port of the reason each call is self-sufficient.
 
 Request Headers
 ---

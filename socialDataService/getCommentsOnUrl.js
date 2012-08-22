@@ -37,7 +37,7 @@
     }
 
     // Example use
-    $.when($.SP.SocialDataService.GetCommentsOnUrl({url: 'https://example.com'})).done(function (data, textStatus, jqXHR) {
+    $.SP.SocialDataService.GetCommentsOnUrl({url: 'https://example.com'}).done(function (data, textStatus, jqXHR) {
         var comments = $(data).find('SocialCommentDetail').map(function (i, val) {
             var comment = $(val);
 

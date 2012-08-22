@@ -26,7 +26,7 @@
         });
     }
     // Example use
-    $.when($.SP.UserGroup.GetUserCollectionFromGroup('group name')).done(function (data, textStatus, jqXHR) {
+    $.SP.UserGroup.GetUserCollectionFromGroup('group name').done(function (data, textStatus, jqXHR) {
         console.log($.map($(data).find('User'), function(val){
             var user = $(val);
             return {

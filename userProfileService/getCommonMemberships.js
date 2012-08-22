@@ -24,7 +24,7 @@
     }
 
     // Example use
-    $.when($.SP.userProfileService.getCommonMemberships()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetCommonMemberships().done(function (data, textStatus, jqXHR) {
         var memberships = $(data).find('MembershipData').map(function (membership) {
             var $membership = $(membership);
 

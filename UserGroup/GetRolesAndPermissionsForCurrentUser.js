@@ -24,7 +24,7 @@
         });
     }
     // Example use
-    $.when($.SP.UserGroup.GetRolesAndPermissionsForCurrentUser()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserGroup.GetRolesAndPermissionsForCurrentUser().done(function (data, textStatus, jqXHR) {
     	var perms = $(data);
     	var output = {};
     	output.permissionsValue = perms.find('Permissions').attr('Value');

@@ -24,7 +24,7 @@
     }
 
     // Example use
-    $.when($.SP.userProfileService.getInCommon()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetInCommon().done(function (data, textStatus, jqXHR) {
         var common = {
             manager: null,
             contacts: [],

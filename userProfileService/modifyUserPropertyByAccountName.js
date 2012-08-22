@@ -53,7 +53,7 @@
     }
 
     // Example use, nothing cool comes back
-    $.SP.userProfileService.modifyUserPropertyByAccountName({
+    $.SP.UserProfileService.ModifyUserPropertyByAccountName({
         Name: 'SPS-StatusNotes',
         ValueData: 'newester status'
     });

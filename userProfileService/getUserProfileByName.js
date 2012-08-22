@@ -23,7 +23,7 @@
         });
     }
     // Example use
-    $.when($.SP.userProfileService.GetUserProfileByName()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetUserProfileByName().done(function (data, textStatus, jqXHR) {
         var user = {};
         $(data).find('PropertyData').each(function (i, property) {
             var $property = $(property);

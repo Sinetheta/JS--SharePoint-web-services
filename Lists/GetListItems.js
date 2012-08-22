@@ -42,9 +42,9 @@
     }
 
     // Example use
-    $.when($.SP.Lists.GetListItems(L_Menu_BaseUrl, {
+    $.SP.Lists.GetListItems(L_Menu_BaseUrl, {
         listName: 'Pages'
-    })).done(function (data, textStatus, jqXHR) {
+    }).done(function (data, textStatus, jqXHR) {
         var listItems = $(data).find('z\\:row').map(function (listItem) {
             var item = {};
             

@@ -28,7 +28,7 @@
     }
 
     // Example use
-    $.when($.SP.Lists.GetList(L_Menu_BaseUrl, 'exampleList')).done(function (data, textStatus, jqXHR) {
+    $.SP.Lists.GetList(L_Menu_BaseUrl, 'exampleList').done(function (data, textStatus, jqXHR) {
         //you're on your own...
         console.log(jqXHR);
     });

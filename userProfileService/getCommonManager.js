@@ -24,7 +24,7 @@
     }
 
     // Example use
-    $.when( $.SP.userProfileService.getCommonManager() ).done(function(data, textStatus, jqXHR){
+    $.SP.UserProfileService.GetCommonManager().done(function(data, textStatus, jqXHR){
         var $manager = $(data).find('GetCommonManagerResult');
         
         console.log({ 

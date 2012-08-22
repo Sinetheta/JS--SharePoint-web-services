@@ -22,7 +22,7 @@
     }
 
     // Example use
-    $.when($.SP.Search.GetPortalSearchInfo()).done(function (data, textStatus, jqXHR) {
+    $.SP.Search.GetPortalSearchInfo().done(function (data, textStatus, jqXHR) {
         var escapedScopes = $(data).find('GetPortalSearchInfoResult').text();
         var scopes = $(escapedScopes).find('Name');
         

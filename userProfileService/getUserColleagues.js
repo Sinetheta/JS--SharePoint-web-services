@@ -27,7 +27,7 @@
     }
 
     // Example use, nothing cool comes back
-    $.when($.SP.userProfileService.getUserColleagues()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetUserColleagues().done(function (data, textStatus, jqXHR) {
         var contacts = $(data).find('ContactData').map(function (contact) {
             var $contact = $(contact);
             

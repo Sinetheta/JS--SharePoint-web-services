@@ -23,7 +23,7 @@
         });
     }
     // Example use
-    $.when($.SP.UserProfileService.GetUserMemberships()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetUserMemberships().done(function (data, textStatus, jqXHR) {
         console.log($.map($(data).find('MembershipData'), function(val){
             var group = $(val);
             return {

@@ -35,11 +35,11 @@
     }
 
     // Example use
-    $.when($.SP.People.SearchPrincipals({
+    $.SP.People.SearchPrincipals({
         searchText: 'Johnson',
         maxResults: 5,
         principalType: 'User'
-    })).done(function (data, textStatus, jqXHR) {
+    }).done(function (data, textStatus, jqXHR) {
         var principles = $.map($(data).find('PrincipalInfo'), function (principle) {
             var record = {};
             

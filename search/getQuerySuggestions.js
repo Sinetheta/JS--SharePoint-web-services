@@ -40,7 +40,7 @@
         });
     }
     // Example use
-    $.when(GetQuerySuggestions('staff')).done(function (data, textStatus, jqXHR) {
+    $.SP.Search.GetQuerySuggestions('staff').done(function (data, textStatus, jqXHR) {
         $(data).find('GetQuerySuggestionsResult string').each(function (i, result) {
             console.log($(result).text());
         });

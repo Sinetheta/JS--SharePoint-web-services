@@ -23,7 +23,7 @@
         });
     }
     // Example use
-    $.when(getUserLinks()).done(function (data, textStatus, jqXHR) {
+    $.SP.UserProfileService.GetUserLinks().done(function (data, textStatus, jqXHR) {
         $(data).find('QuickLinkData').each(function (i, link) {
             var $link = $(link);
 
