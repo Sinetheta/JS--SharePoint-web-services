@@ -36,8 +36,6 @@
         soap += '       </ModifyUserPropertyByAccountName>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
-        console.log(soap)
-
 
         return $.ajax({
             type: "POST",
