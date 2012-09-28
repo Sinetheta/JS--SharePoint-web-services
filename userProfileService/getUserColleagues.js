@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.GetUserColleagues = function (accountName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/userProfileService.asmx',
+            url: '/_vti_bin/userProfileService.asmx',
             data: soap,
             dataType: "xml",
             beforeSend: function (xhr) {
@@ -28,20 +27,20 @@
 
     // Example use, nothing cool comes back
     $.SP.UserProfileService.GetUserColleagues().done(function (data, textStatus, jqXHR) {
-        var contacts = $(data).find('ContactData').map(function (contact) {
-            var $contact = $(contact);
+        var contacts = $(data).find('ContactData').map(function (val) {
+            var contact = $(val);
             
             return {
-                AccountName: $contact.find('AccountName').text(),
-                Privacy: $contact.find('Privacy').text(),
-                Name: $contact.find('Name').text(),
-                IsInWorkGroup: $contact.find('IsInWorkGroup').text() === 'true' ? true : false,
-                Group: $contact.find('Group').text(),
-                Email: $contact.find('Email').text(),
-                Title: $contact.find('Title').text(),
-                Url: $contact.find('Url').text(),
-                UserProfileID: $contact.find('UserProfileID').text(),
-                ID: parseInt($contact.find('ID').text(), 10)
+                AccountName: contact.find('AccountName').text(),
+                Privacy: contact.find('Privacy').text(),
+                Name: contact.find('Name').text(),
+                IsInWorkGroup: contact.find('IsInWorkGroup').text() === 'true' ? true : false,
+                Group: contact.find('Group').text(),
+                Email: contact.find('Email').text(),
+                Title: contact.find('Title').text(),
+                Url: contact.find('Url').text(),
+                UserProfileID: contact.find('UserProfileID').text(),
+                ID: parseInt(contact.find('ID').text(), 10)
             };
         });
         console.log(contacts);

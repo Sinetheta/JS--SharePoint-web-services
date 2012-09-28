@@ -1,6 +1,5 @@
 (function($){ 
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
     
     $.SP.UserProfileService.GetCommonManager = function (accountName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/userProfileService.asmx',
+            url: '/_vti_bin/userProfileService.asmx',
             data: soap,
             dataType: "xml"
         });
@@ -25,19 +24,19 @@
 
     // Example use
     $.SP.UserProfileService.GetCommonManager().done(function(data, textStatus, jqXHR){
-        var $manager = $(data).find('GetCommonManagerResult');
+        var manager = $(data).find('GetCommonManagerResult');
         
         console.log({ 
-            AccountName: $manager.find('AccountName').text(),
-            Privacy: $manager.find('Privacy').text(),
-            Name: $manager.find('Name').text(),
-            IsInWorkGroup: $manager.find('IsInWorkGroup').text() === 'true'? true: false,
-            Group: $manager.find('Group').text(),
-            Email: $manager.find('Email').text(),
-            Title: $manager.find('Title').text(),
-            Url: $manager.find('Url').text(),
-            UserProfileID: $manager.find('UserProfileID').text(),
-            ID: parseInt($manager.find('ID').text(),10)
+            AccountName: manager.find('AccountName').text(),
+            Privacy: manager.find('Privacy').text(),
+            Name: manager.find('Name').text(),
+            IsInWorkGroup: manager.find('IsInWorkGroup').text() === 'true'? true: false,
+            Group: manager.find('Group').text(),
+            Email: manager.find('Email').text(),
+            Title: manager.find('Title').text(),
+            Url: manager.find('Url').text(),
+            UserProfileID: manager.find('UserProfileID').text(),
+            ID: parseInt(manager.find('ID').text(),10)
         });
     });
 })(jQuery);

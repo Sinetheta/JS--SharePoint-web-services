@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.Search = $.SP.Search || {};
 
     $.SP.Search.GetPortalSearchInfo = function () {
@@ -15,7 +14,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/Search.asmx',
+            url: '/_vti_bin/Search.asmx',
             data: soap,
             dataType: "xml"
         });

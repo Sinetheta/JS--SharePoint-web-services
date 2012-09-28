@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.GetUserLinks = function (accountName) {
@@ -24,15 +23,15 @@
     }
     // Example use
     $.SP.UserProfileService.GetUserLinks().done(function (data, textStatus, jqXHR) {
-        $(data).find('QuickLinkData').each(function (i, link) {
-            var $link = $(link);
+        $(data).find('QuickLinkData').each(function (i, val) {
+            var link = $(val);
 
             console.log({
-                id: $link.find('ID').text(),
-                name: $link.find('Name').text(),
-                group: $link.find('Group').text(),
-                privacy: $link.find('Privacy').text(),
-                url: $link.find('Url').text(),
+                id: link.find('ID').text(),
+                name: link.find('Name').text(),
+                group: link.find('Group').text(),
+                privacy: link.find('Privacy').text(),
+                url: link.find('Url').text(),
             })
         });
     });

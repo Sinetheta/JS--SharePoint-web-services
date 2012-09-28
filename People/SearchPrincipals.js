@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.People = $.SP.People || {};
 
     $.SP.People.SearchPrincipals = function (SearchPrincipals) {
@@ -28,7 +27,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/People.asmx',
+            url: '/_vti_bin/People.asmx',
             data: soap,
             dataType: "xml"
         });

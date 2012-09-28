@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.Lists = $.SP.Lists || {};
 
     $.SP.Lists.GetList = function (pathname, listName) {
@@ -18,7 +17,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + pathname + '/_vti_bin/Lists.asmx',
+            url: pathname + '/_vti_bin/Lists.asmx',
             data: soap,
             dataType: "xml",
             beforeSend: function (xhr) {

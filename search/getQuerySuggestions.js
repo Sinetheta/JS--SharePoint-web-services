@@ -1,11 +1,13 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.Search = $.SP.Search || {};
 
     $.SP.Search.GetQuerySuggestions = function (querytext, scope) {
-        var soap = '',
-            queryXML = '';
+        var soap = '';
+        var queryXML = '';
+        function escapeHTML(string){
+            return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
         scope = scope ? "SCOPE:\"" + scope + "\"" : "";
 
         queryXML += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
@@ -26,7 +28,7 @@
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
         soap += '       <GetQuerySuggestions xmlns="http://microsoft.com/webservices/OfficeServer/QueryService">';
-        soap += '           <queryXml>' + queryXML.escapeHTML() + '</queryXml>';
+        soap += '           <queryXml>' + escapeHTML(queryXML) + '</queryXml>';
         soap += '       </GetQuerySuggestions>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
@@ -34,7 +36,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: server + '/_vti_bin/search.asmx',
+            url: '/_vti_bin/search.asmx',
             data: soap,
             dataType: "xml"
         });
@@ -46,7 +48,3 @@
         });
     });
 })(jQuery);
-
-String.prototype.escapeHTML = function () {
-    return this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-};

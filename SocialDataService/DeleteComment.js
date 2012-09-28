@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver';
     $.SP.SocialDataService = $.SP.SocialDataService || {};
       
     $.SP.SocialDataService.DeleteComment = function (options) {
@@ -11,6 +10,8 @@
         }
         */
         var soap = '';
+        options = options || {};
+        options.url = options.url || location.href;
 
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
@@ -27,7 +28,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/socialDataService.asmx',
+            url: '/_vti_bin/socialDataService.asmx',
             data: soap,
             dataType: "xml",
             beforeSend: function (xhr) {

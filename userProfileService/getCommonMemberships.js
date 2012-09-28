@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.GetCommonMemberships = function (accountName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/userProfileService.asmx',
+            url: '/_vti_bin/userProfileService.asmx',
             data: soap,
             dataType: "xml"
         });
@@ -25,21 +24,21 @@
 
     // Example use
     $.SP.UserProfileService.GetCommonMemberships().done(function (data, textStatus, jqXHR) {
-        var memberships = $(data).find('MembershipData').map(function (membership) {
-            var $membership = $(membership);
+        var memberships = $(data).find('MembershipData').map(function (val) {
+            var membership = $(val);
 
             return {
-                Source: $membership.find('Source').text(),
+                Source: membership.find('Source').text(),
                 MemberGroup: {
-                    SourceInternal: $membership.find('MemberGroup').find('SourceInternal').text(),
-                    SourceReference: $membership.find('MemberGroup').find('SourceReference').text()
+                    SourceInternal: membership.find('MemberGroup').find('SourceInternal').text(),
+                    SourceReference: membership.find('MemberGroup').find('SourceReference').text()
                 },
-                DisplayName: $membership.find('DisplayName').text(),
-                Privacy: $membership.find('Privacy').text(),
-                MailNickname: $membership.find('MailNickname').text(),
-                Url: $membership.find('Url').text(),
-                ID: parseInt($membership.find('ID').text(), 10),
-                MemberGroupID: parseInt($membership.find('MemberGroupID').text(), 10)
+                DisplayName: membership.find('DisplayName').text(),
+                Privacy: membership.find('Privacy').text(),
+                MailNickname: membership.find('MailNickname').text(),
+                Url: membership.find('Url').text(),
+                ID: parseInt(membership.find('ID').text(), 10),
+                MemberGroupID: parseInt(membership.find('MemberGroupID').text(), 10)
             };
         });
         console.log(memberships);

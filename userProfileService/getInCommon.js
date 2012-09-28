@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.GetInCommon = function (accountName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/userProfileService.asmx',
+            url: '/_vti_bin/userProfileService.asmx',
             data: soap,
             dataType: "xml"
         });
@@ -31,53 +30,53 @@
             memberships: []
         };
         
-        $(data).find('Manager').each(function (i, contact) {
-            var $contact = $(contact);
+        $(data).find('Manager').each(function (i, val) {
+            var contact = $(val);
 
             common.manager = {
-                AccountName: $contact.find('AccountName').text(),
-                Privacy: $contact.find('Privacy').text(),
-                Name: $contact.find('Name').text(),
-                IsInWorkGroup: $contact.find('IsInWorkGroup').text() === 'true' ? true : false,
-                Group: $contact.find('Group').text(),
-                Email: $contact.find('Email').text(),
-                Title: $contact.find('Title').text(),
-                Url: $contact.find('Url').text(),
-                UserProfileID: $contact.find('UserProfileID').text(),
-                ID: parseInt($contact.find('ID').text(), 10)
+                AccountName: contact.find('AccountName').text(),
+                Privacy: contact.find('Privacy').text(),
+                Name: contact.find('Name').text(),
+                IsInWorkGroup: contact.find('IsInWorkGroup').text() === 'true' ? true : false,
+                Group: contact.find('Group').text(),
+                Email: contact.find('Email').text(),
+                Title: contact.find('Title').text(),
+                Url: contact.find('Url').text(),
+                UserProfileID: contact.find('UserProfileID').text(),
+                ID: parseInt(contact.find('ID').text(), 10)
             };
         });
-        $(data).find('Colleagues').find('ContactData').each(function (i, contact) {
-            var $contact = $(contact);
+        $(data).find('Colleagues').find('ContactData').each(function (i, val) {
+            var contact = $(val);
 
-            common.contacts.push({
-                AccountName: $contact.find('AccountName').text(),
-                Privacy: $contact.find('Privacy').text(),
-                Name: $contact.find('Name').text(),
-                IsInWorkGroup: $contact.find('IsInWorkGroup').text() === 'true' ? true : false,
-                Group: $contact.find('Group').text(),
-                Email: $contact.find('Email').text(),
-                Title: $contact.find('Title').text(),
-                Url: $contact.find('Url').text(),
-                UserProfileID: $contact.find('UserProfileID').text(),
-                ID: parseInt($contact.find('ID').text(), 10)
+            commoncontacts.push({
+                AccountName: contact.find('AccountName').text(),
+                Privacy: contact.find('Privacy').text(),
+                Name: contact.find('Name').text(),
+                IsInWorkGroup: contact.find('IsInWorkGroup').text() === 'true' ? true : false,
+                Group: contact.find('Group').text(),
+                Email: contact.find('Email').text(),
+                Title: contact.find('Title').text(),
+                Url: contact.find('Url').text(),
+                UserProfileID: contact.find('UserProfileID').text(),
+                ID: parseInt(contact.find('ID').text(), 10)
             });
         });
-        $(data).find('Memberships').find('MembershipData').each(function (i, membership) {
-            var $membership = $(membership);
+        $(data).find('Memberships').find('MembershipData').each(function (i, val) {
+            var membership = $(val);
 
             common.memberships.push({
-                Source: $membership.find('Source').text(),
+                Source: membership.find('Source').text(),
                 MemberGroup: {
-                    SourceInternal: $membership.find('MemberGroup').find('SourceInternal').text(),
-                    SourceReference: $membership.find('MemberGroup').find('SourceReference').text()
+                    SourceInternal: membership.find('MemberGroup').find('SourceInternal').text(),
+                    SourceReference: membership.find('MemberGroup').find('SourceReference').text()
                 },
-                DisplayName: $membership.find('DisplayName').text(),
-                Privacy: $membership.find('Privacy').text(),
-                MailNickname: $membership.find('MailNickname').text(),
-                Url: $membership.find('Url').text(),
-                ID: parseInt($membership.find('ID').text(), 10),
-                MemberGroupID: parseInt($membership.find('MemberGroupID').text(), 10)
+                DisplayName: membership.find('DisplayName').text(),
+                Privacy: membership.find('Privacy').text(),
+                MailNickname: membership.find('MailNickname').text(),
+                Url: membership.find('Url').text(),
+                ID: parseInt(membership.find('ID').text(), 10),
+                MemberGroupID: parseInt(membership.find('MemberGroupID').text(), 10)
             });
         });
         console.log(common);

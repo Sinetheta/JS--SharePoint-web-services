@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver';
     $.SP.SocialDataService = $.SP.SocialDataService || {};
 
     $.SP.SocialDataService.AddComment = function (options) {
@@ -13,25 +12,30 @@
         }
         */
         var soap = '';
+        options = options || {};
+        options.url = options.url || location.href;
 
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
-        soap += '       <GetCommentsOnUrl xmlns="http://microsoft.com/webservices/SharePointPortalServer/SocialDataService">';
+        soap += '       <AddComment xmlns="http://microsoft.com/webservices/SharePointPortalServer/SocialDataService">';
         
         $.each(options, function (name, value) {
             soap += '       <' + name + '>' + value + '</' + name + '>';
         });
         
-        soap += '       </GetCommentsOnUrl>';
+        soap += '       </AddComment>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
 
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/socialdataservice.asmx',
+            url: '/_vti_bin/socialdataservice.asmx',
             data: soap,
-            dataType: "xml"
+            dataType: "xml",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("SOAPAction", "http://microsoft.com/webservices/SharePointPortalServer/SocialDataService/AddComment");
+            }
         });
     }
 

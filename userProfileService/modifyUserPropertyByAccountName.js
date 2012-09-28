@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.ModifyUserPropertyByAccountName = function (PropertyData, accountName) {
@@ -43,7 +42,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/UserProfileService.asmx',
+            url: '/_vti_bin/UserProfileService.asmx',
             data: soap,
             dataType: "xml",
             beforeSend: function (xhr) {

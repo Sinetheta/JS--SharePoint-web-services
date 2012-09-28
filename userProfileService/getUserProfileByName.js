@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver.com';
     $.SP.UserProfileService = $.SP.UserProfileService || {};
 
     $.SP.UserProfileService.GetUserProfileByName = function (accountName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/UserProfileService.asmx',
+            url: '/_vti_bin/UserProfileService.asmx',
             data: soap,
             dataType: "xml"
         });
@@ -25,9 +24,9 @@
     // Example use
     $.SP.UserProfileService.GetUserProfileByName().done(function (data, textStatus, jqXHR) {
         var user = {};
-        $(data).find('PropertyData').each(function (i, property) {
-            var $property = $(property);
-            var $values = $property.find('ValueData');
+        $(data).find('PropertyData').each(function (i, val) {
+            var property = $(val);
+            var $values = property.find('ValueData');
             var values;
 
             if ($values.length > 1) {
@@ -36,10 +35,10 @@
                     values.push($(data).find('Value').text());
                 });
             } else {
-                values = $property.find('Value').text()
+                values = property.find('Value').text()
             }
 
-            user[$property.find('Name').text()] = values;
+            user[property.find('Name').text()] = values;
         });
         console.log(user);
     });

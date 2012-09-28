@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver';
     $.SP.SocialDataService = $.SP.SocialDataService || {};
 
     $.SP.SocialDataService.GetCommentsOnUrl = function (options) {
@@ -14,6 +13,8 @@
         http://msdn.microsoft.com/en-us/library/websvcsocialdataservice.socialdataservice.getcommentsonurl.aspx
         */
         var soap = '';
+        options = options || {};
+        options.url = options.url || location.href;
 
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
@@ -30,14 +31,14 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/socialdataservice.asmx',
+            url: '/_vti_bin/socialdataservice.asmx',
             data: soap,
             dataType: "xml"
         });
     }
 
     // Example use
-    $.SP.SocialDataService.GetCommentsOnUrl({url: 'https://example.com'}).done(function (data, textStatus, jqXHR) {
+    $.SP.SocialDataService.GetCommentsOnUrl().done(function (data, textStatus, jqXHR) {
         var comments = $(data).find('SocialCommentDetail').map(function (i, val) {
             var comment = $(val);
 

@@ -1,6 +1,5 @@
 (function ($) {
     $.SP = $.SP || {};
-    $.SP.server = 'https://yourserver';
     $.SP.UserGroup = $.SP.UserGroup || {};
 
     $.SP.UserGroup.GetGroupCollectionFromUser = function (userLoginName) {
@@ -17,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: $.SP.server + '/_vti_bin/UserGroup.asmx',
+            url: '/_vti_bin/UserGroup.asmx',
             data: soap,
             dataType: "xml",
             beforeSend: function (xhr) {
