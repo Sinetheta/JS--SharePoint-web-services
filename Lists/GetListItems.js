@@ -44,9 +44,9 @@
     $.SP.Lists.GetListItems(L_Menu_BaseUrl, {
         listName: 'Pages'
     }).done(function (data, textStatus, jqXHR) {
-        var listItems = $(data).find('row').map(function (i, listItem) {
+        var listItems = $(data).find('z\\:row').map(function (listItem) {
             var item = {};
-
+            
             $.each(listItem.attributes, function (i, attrib) {
                 item[attrib.name] = attrib.value;
             });
