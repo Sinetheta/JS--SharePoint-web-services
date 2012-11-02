@@ -16,7 +16,7 @@
         return $.ajax({
             type: "POST",
             contentType: "text/xml;charset='utf-8'",
-            url: server + '/_vti_bin/UserProfileService.asmx',
+            url: '/_vti_bin/UserProfileService.asmx',
             data: soap,
             dataType: "xml"
         });
