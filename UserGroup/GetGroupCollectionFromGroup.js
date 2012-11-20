@@ -25,15 +25,16 @@
         });
     }
     // Example use
-    $.SP.UserGroup.GetGroupCollectionFromUser('userLoginName').done(function (data) {
-        var groups = $(data).find('Group').map(function (i, group) {
-            var item = {};
-
-            $.each(group.attributes, function (i, attrib) {
-                item[attrib.name] = attrib.value;
-            });
-            return item;
-        });
-        console.log(groups);
+    $.SP.UserGroup.GetGroupCollectionFromUser('dommain\\username').done(function (data, textStatus, jqXHR) {
+        console.log($.map($(data).find('Group'), function(val){
+            var group = $(val);
+            return {
+                ID: parseInt(group.attr('ID'), 10),
+                Name: group.attr('Name'),
+                Description: group.attr('Description'),
+                OwnerID: parseInt(group.attr('OwnerID'), 10),
+                OwnerIsUser: (group.attr('OwnerIsUser') === 'True')
+            }
+        }))
     });
 })(jQuery);
