@@ -8,7 +8,7 @@
         soap += '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">';
         soap += '   <soap12:Body>';
         soap += '       <GetUserProfileByName xmlns="http://microsoft.com/webservices/SharePointPortalServer/UserProfileService">';
-        soap += '           <accountName>' + (accountName || '') + '</accountName>';
+        soap += '           <AccountName>' + (accountName || '') + '</AccountName>';
         soap += '       </GetUserProfileByName>';
         soap += '   </soap12:Body>';
         soap += '</soap12:Envelope>';
